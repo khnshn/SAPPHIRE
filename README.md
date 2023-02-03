@@ -20,6 +20,31 @@ x, m, u, b, r, c = esm_sim.simulate()
 plot_sim(x, m, u, b, r, c)
 ```
 
+### Creating a custom simulation
+
+The parameters of the simulation can be customized by calling the builder setter methods.
+
+```python
+builder.set_days(100)
+builder.set_random_beep(False)
+```
+
+### Getting the parameter values of the default simulation
+```python
+print(esm_sim.get_attrib_value_list())
+```
+
+### Plotting the simulation output
+```python
+import utils
+
+utils.plot_sim(x, m, u, b, r, c)
+```
+An example output plot of the simulaiton:
+<br/>
+<img alt="SAPPHIRE example" height="350" src="https://raw.githubusercontent.com/khnshn/sapphire/main/example.png">
+<br/>
+
 ### Simulation parameters
 
 | **Parameter**                     | **Type**             | **Description**                                                                                                                                                        | Default       |
@@ -48,28 +73,3 @@ plot_sim(x, m, u, b, r, c)
 | use_prefedined_times_to_beep      | (bool; optional)     | when True predefined_times is used                                                                                                                                     | True.         |
 | override_inter_notification_steps | (int; optional)      | when set to greater than -1 it will override the calculated inter notification time based on the experiment protocol                                                   | -1            |
 | total_beeps                       | (int; optional)      | when set to greater than -1 and when predefined_times exists it will determine the inter notification time so the total_beeps is achieved during the experiment period | -1            |
-
-### Creating a custom simulation
-
-The parameters of the simulation can be customized by calling the builder setter methods.
-
-```python
-builder.set_days(100)
-builder.set_random_beep(False)
-```
-
-### Getting the parameter values of the default simulation
-```python
-print(esm_sim.get_attrib_value_list())
-```
-
-### Plotting the simulation output
-```python
-import utils
-
-utils.plot_sim(x, m, u, b, r, c)
-```
-An example output plot of the simulaiton:
-<br/>
-<img alt="SAPPHIRE example" height="350" src="https://raw.githubusercontent.com/khnshn/sapphire/main/example.png">
-<br/>
