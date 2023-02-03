@@ -32,4 +32,6 @@ import utils
 utils.plot_sim(x, m, u, b, r, c)
 ```
 An example output plot of the simulaiton:
-<img alt="SAPPHIRE example" height="100" src="https://raw.githubusercontent.com/khnshn/sapphire/main/example.png">
+<br/>
+<img alt="SAPPHIRE example" height="350" src="https://raw.githubusercontent.com/khnshn/sapphire/main/example.png">
+<br/>
