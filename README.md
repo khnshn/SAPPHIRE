@@ -20,6 +20,18 @@ x, m, u, b, r, c = esm_sim.simulate()
 plot_sim(x, m, u, b, r, c)
 ```
 
+### Simulation parameters
+
+
+### Creating a custom simulation
+
+The parameters of the simulation can be customized by calling the builder setter methods.
+
+```python
+builder.set_days(100)
+builder.set_random_beep(False)
+```
+
 ### Getting the parameter values of the default simulation
 ```python
 print(esm_sim.get_attrib_value_list())
