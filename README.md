@@ -17,8 +17,10 @@ director.builder = builder
 director.build_default_simulation()
 esm_sim = builder.simulation
 x, m, u, b, r, c = esm_sim.simulate()
-plot_sim(x, m, u, b, r, c)
 ```
+```esm_sim.simulate()``` returns:
+
+```x```: x-ticks arry, ```m```: memory accessibility array, ```u```: urge (motivation) array, ```b```: beeps array, ```r```: responses array, and ```c```: context array
 
 ### Creating a custom simulation
 
@@ -32,6 +34,10 @@ builder.set_random_beep(False)
 ### Getting the parameter values of the default simulation
 ```python
 print(esm_sim.get_attrib_value_list())
+```
+Output:
+```
+[('_b', 0), ('_beep_power', 1), ('_beeps_a_day', 5), ('_context_aware_beep', True), ('_context_aware_threshold', 0.5), ('_context_change_steps', 2), ('_context_estimator_function', None), ('_context_reference', array([], dtype=float64)), ('_days', 25), ('_hours_in_day', 12), ('_max_c', 0.7), ('_min_c', 0.33), ('_override_inter_notification_steps', -1), ('_predefined_context_info', []), ('_predefined_times', []), ('_r', 0.2), ('_random_beep', False), ('_rate', -0.8), ('_salience_decay', 0.01), ('_salience_growth_ratio', 0.0015), ('_total_beeps', -1), ('_urge_decay', 0.005), ('_urge_max', 1), ('_use_prefedined_times_to_beep', True), ('decide', <bound method Simulation.decide of <simulation.Simulation object at 0x011D6BC8>>), ('est_context', <bound method Simulation.est_context of <simulation.Simulation object at 0x011D6BC8>>), ('exp_function', <bound method Simulation.exp_function of <simulation.Simulation object at 0x011D6BC8>>), ('get_attrib_value_list', <bound method Simulation.get_attrib_value_list of <simulation.Simulation object at 0x011D6BC8>>), ('is_in_fogg_signal_segment', <bound method Simulation.is_in_fogg_signal_segment of <simulation.Simulation object at 0x011D6BC8>>), ('linear_function', <bound method Simulation.linear_function of <simulation.Simulation object at 0x011D6BC8>>), ('random_with_change', <bound method Simulation.random_with_change of <simulation.Simulation object at 0x011D6BC8>>), ('send_beep', <bound method Simulation.send_beep of <simulation.Simulation object at 0x011D6BC8>>), ('simulate', <bound method Simulation.simulate of <simulation.Simulation object at 0x011D6BC8>>)]
 ```
 
 ### Plotting the simulation output
