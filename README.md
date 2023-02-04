@@ -25,7 +25,7 @@ x, m, u, b, r, c = esm_sim.simulate()
 
 ```x```: x-ticks array, ```m```: memory accessibility array, ```u```: urge (motivation) array, ```b```: beeps array, ```r```: responses array, and ```c```: context array
 
-*the negth of the arrays are equal*
+*the length of the arrays are equal*
 
 ### Creating a custom simulation
 
