@@ -16,7 +16,95 @@ class Builder(ABC):
         pass
 
     @abstractmethod
+    def set_hours_in_day(self) -> None:
+        pass
+
+    @abstractmethod
+    def set_beeps_a_day(self) -> None:
+        pass
+
+    @abstractmethod
+    def set_context_change_steps(self) -> None:
+        pass
+
+    @abstractmethod
+    def set_beep_power(self) -> None:
+        pass
+
+    @abstractmethod
+    def set_urge_max(self) -> None:
+        pass
+
+    @abstractmethod
+    def set_r(self) -> None:
+        pass
+
+    @abstractmethod
+    def set_b(self) -> None:
+        pass
+
+    @abstractmethod
+    def set_rate(self) -> None:
+        pass
+
+    @abstractmethod
+    def set_salience_decay(self) -> None:
+        pass
+
+    @abstractmethod
+    def set_urge_decay(self) -> None:
+        pass
+
+    @abstractmethod
     def set_random_beep(self) -> None:
+        pass
+
+    @abstractmethod
+    def set_min_c(self) -> None:
+        pass
+
+    @abstractmethod
+    def set_context_aware_beep(self) -> None:
+        pass
+
+    @abstractmethod
+    def set_predefined_times(self) -> None:
+        pass
+
+    @abstractmethod
+    def set_max_c(self) -> None:
+        pass
+
+    @abstractmethod
+    def set_salience_growth_ratio(self) -> None:
+        pass
+
+    @abstractmethod
+    def set_predefined_context_info(self) -> None:
+        pass
+
+    @abstractmethod
+    def set_context_estimator_function(self) -> None:
+        pass
+
+    @abstractmethod
+    def set_context_reference(self) -> None:
+        pass
+
+    @abstractmethod
+    def set_context_aware_threshold(self) -> None:
+        pass
+
+    @abstractmethod
+    def set_use_prefedined_times_to_beep(self) -> None:
+        pass
+
+    @abstractmethod
+    def set_override_inter_notification_steps(self) -> None:
+        pass
+
+    @abstractmethod
+    def set_total_beeps(self) -> None:
         pass
 
 
