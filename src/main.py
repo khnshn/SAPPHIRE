@@ -11,4 +11,5 @@ if __name__ == "__main__":
     esm_sim = builder.simulation
     print(esm_sim.get_attrib_value_list())
     x, m, u, b, r, c = esm_sim.simulate()
-    utils.plot_sim(x, m, u, b, r, c)
+    fig, plt = utils.plot_sim(x, m, u, b, r, c)
+    plt.show()

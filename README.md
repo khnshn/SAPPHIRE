@@ -49,7 +49,8 @@ Output (*values below correspond to the default builder*):
 ```python
 import utils
 
-utils.plot_sim(x, m, u, b, r, c)
+fig, plt = utils.plot_sim(x, m, u, b, r, c)
+plt.show()
 ```
 An example output plot of the simulaiton:
 <br/>

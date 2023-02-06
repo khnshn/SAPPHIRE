@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 
+
 def plot_sim(x, m, u, b, r, c, annotations={"x": []}):
     """plots the simulation result
 
@@ -10,6 +11,9 @@ def plot_sim(x, m, u, b, r, c, annotations={"x": []}):
         b (list): beep values 0 or 1 at each time step
         r (list): response values 0 or 1 at each time step
         c (list): list of P(c|response=1) at each time step
+
+    Returns:
+        tuple: simulation figure and plot
     """
     fig, ax = plt.subplots()
     plt.plot(x, m[:-1], label="MA", color="tab:blue")
@@ -34,7 +38,7 @@ def plot_sim(x, m, u, b, r, c, annotations={"x": []}):
     for loc in annotations["x"]:
         plt.axvline(x=loc, color="tab:red")
     plt.legend()
-    plt.show()
+    return (fig, plt)
 
 
 def calc_stats(beeps, responses):
