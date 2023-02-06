@@ -1,3 +1,8 @@
+import matplotlib
+
+matplotlib.use(
+    "SVG"
+)  # surpasses UserWarning: Starting a Matplotlib GUI outside of the main thread will likely fail.
 import matplotlib.pyplot as plt
 
 
