@@ -9,7 +9,11 @@ app = Flask(__name__)
 @app.route("/")
 @app.route("/index/")
 def index():
-    return render_template("index.html")
+    params = [
+        str(item[0]).replace("_", " ").strip()
+        for item in sim_web.get_simulation_params()
+    ]
+    return render_template("index.html", params=params)
 
 
 @app.route("/simulate", methods=["POST"])

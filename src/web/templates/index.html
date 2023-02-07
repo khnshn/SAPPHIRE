@@ -5,7 +5,7 @@
 {% block script %}
 <script>
     $(document).ready(function () {
-        $("#simulate").click(function () {
+        $("#btn-simulate").click(function () {
             $.ajax({
                 type: "POST",
                 url: "/simulate?type=default",
@@ -27,25 +27,23 @@
     <div class="col pe-5">
         <h2>Simulation Parameters</h2>
         <div class="mb-3 row">
-            <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="inputPassword">
+            {% for param in params %}
+            <div class="mb-3">
+                <label for="in-{{ param.replace(' ','-') }}" class="form-label">{{ param }}</label>
+                <input type="text" class="form-control" id="in-{{param.replace(' ','-')}}">
             </div>
+            {% endfor %}
         </div>
-        <div class="mb-3 row">
-            <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="inputPassword">
-            </div>
-        </div>
-        <button id="simulate-custom" type="button" class="btn btn-outline-primary">Run Custom
+        <button id="btn-simulate-custom" type="button" class="btn btn-outline-primary">Run Custom
             Simulation</button>
-        <button id="simulate" type="button" class="btn btn-outline-secondary">Run Default Simulation</button>
+        <button id="btn-simulate" type="button" class="btn btn-outline-secondary">Run Default Simulation</button>
     </div>
     <div class="col">
-        <img id="sim_img" src="/static/dummy.png"
-            class="rounded mx-auto d-block border border-primary-subtle mb-5 bg-body rounded"
-            alt="Simulation plot image" />
+        <div class="sticky-top">
+            <img id="sim_img" src="/static/dummy.png"
+                class="rounded mx-auto d-block border border-primary-subtle mb-5 bg-body rounded"
+                alt="Simulation plot image" />
+        </div>
     </div>
 </div>
 {% endblock %}
