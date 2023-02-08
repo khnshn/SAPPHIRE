@@ -26,24 +26,24 @@
 <div class="row mt-5">
     <div class="col pe-5">
         <h2>Simulation Parameters</h2>
-        <div class="mb-3 row">
+        <div class="mb-3 row mb-5 pb-3">
             {% for param in params %}
-            <div class="mb-3">
-                <label for="in-{{ param.replace(' ','-') }}" class="form-label">{{ param }}</label>
-                <input type="text" class="form-control" id="in-{{param.replace(' ','-')}}">
+            <div class="input-group mb-3">
+                <span class="input-group-text">{{ param }}</span>
+                <input type="text" class="form-control" id="in-{{ param.replace(' ','-') }}">
             </div>
             {% endfor %}
         </div>
-        <button id="btn-simulate-custom" type="button" class="btn btn-outline-primary">Run Custom
-            Simulation</button>
-        <button id="btn-simulate" type="button" class="btn btn-outline-secondary">Run Default Simulation</button>
     </div>
     <div class="col">
-        <div class="sticky-top">
-            <img id="sim_img" src="/static/dummy.png"
-                class="rounded mx-auto d-block border border-primary-subtle mb-5 bg-body rounded"
-                alt="Simulation plot image" />
-        </div>
+        <img id="sim_img" src="/static/dummy.png"
+            class="rounded mx-auto d-block border border-primary-subtle mb-5 bg-body rounded position-fixed"
+            alt="Simulation plot image" />
     </div>
+</div>
+<div class="fixed-bottom bg-light p-3 border-top">
+    <button id="btn-simulate-custom" type="button" class="btn btn-outline-primary">Run Custom
+        Simulation</button>
+    <button id="btn-simulate" type="button" class="btn btn-outline-secondary">Run Default Simulation</button>
 </div>
 {% endblock %}

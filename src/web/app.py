@@ -10,8 +10,9 @@ app = Flask(__name__)
 @app.route("/index/")
 def index():
     params = [
-        str(item[0]).replace("_", " ").strip()
+        item[0].replace("_", " ").strip()
         for item in sim_web.get_simulation_params()
+        if item[0].startswith("_")
     ]
     return render_template("index.html", params=params)
 
