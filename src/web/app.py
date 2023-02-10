@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import render_template
 from flask import request
+from flask import jsonify
 import simulate as sim_web
 
 app = Flask(__name__)
@@ -20,5 +21,5 @@ def index():
 @app.route("/simulate", methods=["POST"])
 def simulate():
     if request.args.get("type") == "default":
-        return str(sim_web.simulate_base64()), 200
+        return jsonify(sim_web.simulate_get_data()), 200
     return "Unknown simulation type", 400
