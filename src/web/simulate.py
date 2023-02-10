@@ -27,7 +27,14 @@ def simulate_get_base64():
 
 def simulate_get_data():
     x, m, u, b, r, c = simulate_base()
-    return (x, m)
+    return (
+        x,
+        m,
+        u,
+        [0 if i == 1 else None for i in b],
+        [0 if i == 1 else None for i in r],
+        c,
+    )
 
 
 def get_simulation_params():

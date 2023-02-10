@@ -6,28 +6,6 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     let MY_CHART;
-    function draw_line_chart(ctx, x, y, label) {
-        if (MY_CHART) {
-            MY_CHART.destroy();
-        }
-        MY_CHART = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: x,
-                datasets: [{
-                    label: label,
-                    data: y,
-                    borderWidth: 1,
-                    tension: 0.1,
-                    pointRadius: 0,
-                    pointHitRadius: 5
-                }]
-            },
-            options: {
-                responsive: true
-            }
-        });
-    }
     $(document).ready(function () {
         $("#btn-simulate").click(function () {
             $.ajax({
@@ -37,7 +15,53 @@
                     console.log(data);
                     // $('#sim-img').attr('src', 'data:image/png;base64,' + data);
                     const ctx = document.getElementById('sim-dg');
-                    draw_line_chart(ctx, data[0], data[1], 'Memory Accessibility')
+                    if (MY_CHART) {
+                        MY_CHART.destroy();
+                    }
+                    MY_CHART = new Chart(ctx, {
+                        data: {
+                            labels: data[0],
+                            datasets: [{
+                                type: 'line',
+                                label: 'Memory Accessibility',
+                                data: data[1],
+                                borderWidth: 1,
+                                tension: 0.1,
+                                pointRadius: 0,
+                                pointHitRadius: 5
+                            }, {
+                                type: 'line',
+                                label: 'Urge',
+                                data: data[2],
+                                borderWidth: 1,
+                                tension: 0.1,
+                                pointRadius: 0,
+                                pointHitRadius: 5
+                            }, {
+                                type: 'line',
+                                label: 'Context',
+                                data: data[5],
+                                borderWidth: 1,
+                                tension: 0.1,
+                                pointRadius: 0,
+                                pointHitRadius: 5
+                            }, {
+                                type: 'line',
+                                label: 'Beep',
+                                data: data[3],
+                                pointHitRadius: 5
+                            }, {
+                                type: 'line',
+                                label: 'Respond',
+                                data: data[4],
+                                borderWidth: 5,
+                                pointHitRadius: 9
+                            }]
+                        },
+                        options: {
+                            responsive: true
+                        }
+                    });
                 },
                 error: function (err) {
                     console.log(err);
