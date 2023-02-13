@@ -11,7 +11,7 @@ app = Flask(__name__)
 @app.route("/index/")
 def index():
     params = [
-        (item[0].replace("_", " ").strip(), str(item[1]))
+        (item[0].replace("_", " ").strip(), str(item[1]), type(item[1]).__name__)
         for item in sim_web.get_simulation_params()
         if item[0].startswith("_")
     ]
