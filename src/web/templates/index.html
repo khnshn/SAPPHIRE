@@ -86,6 +86,9 @@
                 },
                 error: function (err) {
                     console.log(err);
+                },
+                beforeSend: function () {
+                    $("html, body").animate({ scrollTop: 0 }, "fast");
                 }
             });
         });
