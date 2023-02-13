@@ -46,12 +46,12 @@
                                 pointRadius: 0,
                                 pointHitRadius: 5
                             }, {
-                                type: 'line',
+                                type: 'scatter',
                                 label: 'Beep',
                                 data: data[3],
                                 pointHitRadius: 5
                             }, {
-                                type: 'line',
+                                type: 'scatter',
                                 label: 'Respond',
                                 data: data[4],
                                 borderWidth: 5,
@@ -74,8 +74,8 @@
 
 {% block content %}
 <div class="row mt-5">
-    <div class="col pe-5">
-        <h2>Simulation Parameters</h2>
+    <div class="col-4 pe-5">
+        <h3 class="text-secondary">Simulation Parameters</h3>
         <div class="mb-3 row mb-5 pb-3">
             {% for param in params %}
             <div class="input-group mb-3">
@@ -85,7 +85,7 @@
             {% endfor %}
         </div>
     </div>
-    <div class="col">
+    <div class="col-8">
         <!-- <img id="sim-img" src="/static/dummy.png"
             class="rounded mx-auto d-block border border-primary-subtle mb-5 bg-body position-fixed"
             alt="Simulation plot image" /> -->
@@ -95,8 +95,7 @@
     </div>
 </div>
 <div class="fixed-bottom bg-light p-3 border-top">
-    <button id="btn-simulate-custom" type="button" class="btn btn-outline-primary">Run Custom
-        Simulation</button>
-    <button id="btn-simulate" type="button" class="btn btn-outline-secondary">Run Default Simulation</button>
+    <button id="btn-simulate-custom" type="button" class="btn btn-outline-primary">Run Simulation</button>
+    <button id="btn-simulate" type="button" class="btn btn-outline-secondary">Reset</button>
 </div>
 {% endblock %}
