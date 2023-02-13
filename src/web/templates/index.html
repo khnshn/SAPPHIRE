@@ -91,7 +91,7 @@
 
 {% block content %}
 <div class="row mt-5">
-    <div class="col-5 pe-5">
+    <div class="col-lg-5 col-md-6 col-sm-12 pe-5">
         <h3 class="text-secondary">Simulation Parameters</h3>
         <div class="mb-3 row mb-5 pb-3">
             <div class="input-group mb-3">
@@ -115,12 +115,12 @@
             {% endfor %}
         </div>
     </div>
-    <div class="col-7">
+    <div class="col-lg-7 col-md-6 col-sm-12">
         <!-- <img id="sim-img" src="/static/dummy.png"
             class="rounded mx-auto d-block border border-primary-subtle mb-5 bg-body position-fixed"
             alt="Simulation plot image" /> -->
         <h3 class="text-secondary">Simulation Result</h3>
-        <div class="rounded mx-auto d-block border border-primary-subtle mb-5 bg-body"">
+        <div class="rounded mx-auto d-block border border-primary-subtle mb-5 bg-body">
             <canvas id="sim-dg"></canvas>
         </div>
         <h4 class="text-secondary">Statistical Analysis</h4>
