@@ -122,55 +122,55 @@ class ConcreteBuilder(Builder):
         return simulation
 
     def set_days(self, days) -> None:
-        self._simulation._days = days
+        self._simulation._days = int(days)
 
     def set_hours_in_day(self, hours_in_day) -> None:
-        self._simulation._hours_in_day = hours_in_day
+        self._simulation._hours_in_day = int(hours_in_day)
 
     def set_beeps_a_day(self, beeps_a_day) -> None:
-        self._simulation._beeps_a_day = beeps_a_day
+        self._simulation._beeps_a_day = int(beeps_a_day)
 
     def set_context_change_steps(self, context_change_steps) -> None:
-        self._simulation._context_change_steps = context_change_steps
+        self._simulation._context_change_steps = int(context_change_steps)
 
     def set_beep_power(self, beep_power) -> None:
-        self._simulation._beep_power = beep_power
+        self._simulation._beep_power = float(beep_power)
 
     def set_urge_max(self, urge_max) -> None:
-        self._simulation._urge_max = urge_max
+        self._simulation._urge_max = float(urge_max)
 
     def set_r(self, r) -> None:
-        self._simulation._r = r
+        self._simulation._r = float(r)
 
     def set_b(self, b) -> None:
-        self._simulation._b = b
+        self._simulation._b = float(b)
 
     def set_rate(self, rate) -> None:
-        self._simulation._rate = rate
+        self._simulation._rate = float(rate)
 
     def set_salience_decay(self, salience_decay) -> None:
-        self._simulation._salience_decay = salience_decay
+        self._simulation._salience_decay = float(salience_decay)
 
     def set_urge_decay(self, urge_decay) -> None:
-        self._simulation._urge_decay = urge_decay
+        self._simulation._urge_decay = float(urge_decay)
 
     def set_random_beep(self, random_beep) -> None:
-        self._simulation._random_beep = random_beep
+        self._simulation._random_beep = bool(random_beep)
 
     def set_min_c(self, min_c) -> None:
-        self._simulation._min_c = min_c
+        self._simulation._min_c = float(min_c)
 
     def set_context_aware_beep(self, context_aware_beep) -> None:
-        self._simulation._context_aware_beep = context_aware_beep
+        self._simulation._context_aware_beep = bool(context_aware_beep)
 
     def set_predefined_times(self, predefined_times) -> None:
         self._simulation._predefined_times = predefined_times
 
     def set_max_c(self, max_c) -> None:
-        self._simulation._max_c = max_c
+        self._simulation._max_c = float(max_c)
 
     def set_salience_growth_ratio(self, salience_growth_ratio) -> None:
-        self._simulation._salience_growth_ratio = salience_growth_ratio
+        self._simulation._salience_growth_ratio = float(salience_growth_ratio)
 
     def set_predefined_context_info(self, predefined_context_info) -> None:
         self._simulation._predefined_context_info = predefined_context_info
@@ -182,20 +182,22 @@ class ConcreteBuilder(Builder):
         self._simulation._context_reference = context_reference
 
     def set_context_aware_threshold(self, context_aware_threshold) -> None:
-        self._simulation._context_aware_threshold = context_aware_threshold
+        self._simulation._context_aware_threshold = float(context_aware_threshold)
 
     def set_use_prefedined_times_to_beep(self, use_prefedined_times_to_beep) -> None:
-        self._simulation._use_prefedined_times_to_beep = use_prefedined_times_to_beep
+        self._simulation._use_prefedined_times_to_beep = bool(
+            use_prefedined_times_to_beep
+        )
 
     def set_override_inter_notification_steps(
         self, override_inter_notification_steps
     ) -> None:
-        self._simulation._override_inter_notification_steps = (
+        self._simulation._override_inter_notification_steps = int(
             override_inter_notification_steps
         )
 
     def set_total_beeps(self, total_beeps) -> None:
-        self._simulation._total_beeps = total_beeps
+        self._simulation._total_beeps = int(total_beeps)
 
 
 class Simulation:

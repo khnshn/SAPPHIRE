@@ -27,6 +27,10 @@ def simulate_get_base64():
 
 def simulate_get_data():
     x, m, u, b, r, c = simulate_base()
+    return clean_for_chartjs(x, m, u, b, r, c)
+
+
+def clean_for_chartjs(x, m, u, b, r, c):
     return (
         x,
         m,
@@ -35,6 +39,22 @@ def simulate_get_data():
         [0 if i == 1 else None for i in r],
         c,
     )
+
+
+def simulate_custom_get_data(params):
+    director = sim.Director()
+    builder = sim.ConcreteBuilder()
+    director.builder = builder
+    director.build_default_simulation()
+    #
+    # builder.set_days(100)
+    for p in params:
+        setter = getattr(builder, "set_" + p[0].replace("-", "_"))
+        setter(p[1])
+    #
+    esm_sim = builder.simulation
+    x, m, u, b, r, c = esm_sim.simulate()
+    return clean_for_chartjs(x, m, u, b, r, c)
 
 
 def get_simulation_params():

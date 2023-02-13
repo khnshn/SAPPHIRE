@@ -8,18 +8,28 @@
     // global variables
     let MY_CHART;
     // global functions
-    function response_rate(sent, responded, target){
+    function response_rate(sent, responded, target) {
         return parseFloat(responded.filter(x => x === target).length / sent.filter(x => x === target).length).toPrecision(3)
     }
-    function retention_rate(responded, timesteps, target){
-        return parseFloat((responded.lastIndexOf(target)+1) / timesteps.length).toPrecision(3)
+    function retention_rate(responded, timesteps, target) {
+        return parseFloat((responded.lastIndexOf(target) + 1) / timesteps.length).toPrecision(3)
+    }
+    function build_query_string() {
+        var query = "";
+        var elems = $('[id^=in-]');
+        for (let i = 0; i < elems.length; i++) {
+            if (elems[i].value && !elems[i].id.includes('file')) {
+                query += elems[i].id.replace("in-", "") + "=" + elems[i].value + "&";
+            }
+        }
+        return "type=custom&" + query.substring(0, query.length - 1);
     }
     //JQuery
     $(document).ready(function () {
         $("#btn-simulate").click(function () {
             $.ajax({
                 type: "POST",
-                url: "/simulate?type=default",
+                url: "/simulate?" + build_query_string(),
                 success: function (data) {
                     console.log(data);
                     // $('#sim-img').attr('src', 'data:image/png;base64,' + data);
@@ -71,8 +81,8 @@
                             responsive: true
                         }
                     });
-                    $($('#td-avg-rr')[0]).html(response_rate(data[3],data[4],0));
-                    $($('#td-avg-rt')[0]).html(retention_rate(data[4],data[0],0));
+                    $($('#td-avg-rr')[0]).html(response_rate(data[3], data[4], 0));
+                    $($('#td-avg-rt')[0]).html(retention_rate(data[4], data[0], 0));
                 },
                 error: function (err) {
                     console.log(err);
@@ -96,7 +106,7 @@
         <div class="mb-3 row mb-5 pb-3">
             <div class="input-group mb-3">
                 <span class="input-group-text">number of participants</span>
-                <input type="text" class="form-control" id="in-number-of-participants" value="35">
+                <input type="text" class="form-control" id="infr-number-of-participants" value="35">
             </div>
             {% for param in params %}
             <div class="input-group mb-3">
@@ -104,7 +114,7 @@
                 {% if param[2] in ['float', 'int'] %}
                 <input type="text" class="form-control" id="in-{{ param[0].replace(' ','-') }}" value="{{ param[1] }}">
                 {% elif param[2]=='bool' %}
-                <select class="form-select" id="in-{{ param[0].replace(' ','-') }}-select" aria-label="{{ param[0] }}">
+                <select class="form-select" id="in-{{ param[0].replace(' ','-') }}" aria-label="{{ param[0] }}">
                     <option {% if param[1]=='False' %} selected {% endif %} value="0">False</option>
                     <option {% if param[1]=='True' %} selected {% endif %} value="1">True</option>
                 </select>
@@ -123,25 +133,25 @@
         <div class="rounded mx-auto d-block border border-primary-subtle mb-5 bg-body">
             <canvas id="sim-dg"></canvas>
         </div>
-        <h4 class="text-secondary">Statistical Analysis</h4>
+        <h4 class="text-secondary">Statistical Report</h4>
         <table class="table table-bordered">
             <thead>
-              <tr>
-                <th scope="col" class="text-secondary">AVG Response Rate</th>
-                <th scope="col" class="text-secondary">SD Response Rate</th>
-                <th scope="col" class="text-secondary">AVG Retention Rate</th>
-                <th scope="col" class="text-secondary">SD Retention Rate</th>
-              </tr>
+                <tr>
+                    <th scope="col" class="text-secondary">AVG Response Rate</th>
+                    <th scope="col" class="text-secondary">SD Response Rate</th>
+                    <th scope="col" class="text-secondary">AVG Retention Rate</th>
+                    <th scope="col" class="text-secondary">SD Retention Rate</th>
+                </tr>
             </thead>
             <tbody>
-              <tr>
-                <td id="td-avg-rr"></td>
-                <td id="td-sd-rr"></td>
-                <td id="td-avg-rt"></td>
-                <td id="td-sd-rt"></td>
-              </tr>
+                <tr>
+                    <td id="td-avg-rr"></td>
+                    <td id="td-sd-rr"></td>
+                    <td id="td-avg-rt"></td>
+                    <td id="td-sd-rt"></td>
+                </tr>
             </tbody>
-          </table>
+        </table>
     </div>
 </div>
 <div class="fixed-bottom bg-light p-3 border-top">

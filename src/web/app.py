@@ -22,4 +22,8 @@ def index():
 def simulate():
     if request.args.get("type") == "default":
         return jsonify(sim_web.simulate_get_data()), 200
+    elif request.args.get("type") == "custom":
+        params = [(x, request.args.get(x)) for x in request.args]
+        params.remove(params[0])  # to remove type=custom; irrelevant for the simulator
+        return jsonify(sim_web.simulate_custom_get_data(params)), 200
     return "Unknown simulation type", 400
