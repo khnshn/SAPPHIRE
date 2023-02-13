@@ -14,7 +14,7 @@
                 success: function (data) {
                     console.log(data);
                     // $('#sim-img').attr('src', 'data:image/png;base64,' + data);
-                    const ctx = document.getElementById('sim-dg');
+                    const ctx = $('#sim-dg');
                     if (MY_CHART) {
                         MY_CHART.destroy();
                     }
@@ -68,6 +68,12 @@
                 }
             });
         });
+        $("#btn-simulate").click(function () {
+            const ctx = $('#sim-dg');
+            if (MY_CHART) {
+                MY_CHART.destroy();
+            }
+        })
     });
 </script>
 {% endblock %}
@@ -79,8 +85,8 @@
         <div class="mb-3 row mb-5 pb-3">
             {% for param in params %}
             <div class="input-group mb-3">
-                <span class="input-group-text">{{ param }}</span>
-                <input type="text" class="form-control" id="in-{{ param.replace(' ','-') }}">
+                <span class="input-group-text">{{ param[0] }}</span>
+                <input type="text" class="form-control" id="in-{{ param[0].replace(' ','-') }}" value="{{ param[1] }}">
             </div>
             {% endfor %}
         </div>
@@ -89,13 +95,14 @@
         <!-- <img id="sim-img" src="/static/dummy.png"
             class="rounded mx-auto d-block border border-primary-subtle mb-5 bg-body position-fixed"
             alt="Simulation plot image" /> -->
-        <div class="rounded mx-auto d-block border border-primary-subtle mb-5 bg-body">
-            <canvas id="sim-dg"></canvas>
+        <h3 class="text-secondary">Simulation Result</h3>
+        <div class="rounded mx-auto d-block border border-primary-subtle mb-5 bg-body"">
+            <canvas id=" sim-dg"></canvas>
         </div>
     </div>
 </div>
 <div class="fixed-bottom bg-light p-3 border-top">
-    <button id="btn-simulate-custom" type="button" class="btn btn-outline-primary">Run Simulation</button>
-    <button id="btn-simulate" type="button" class="btn btn-outline-secondary">Reset</button>
+    <button id="btn-simulate" type="button" class="btn btn-outline-primary">Run Simulation</button>
+    <button id="btn-reset" type="button" class="btn btn-outline-secondary">Reset</button>
 </div>
 {% endblock %}
