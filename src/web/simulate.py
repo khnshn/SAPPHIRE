@@ -45,15 +45,19 @@ def simulate_custom_get_data(params):
     director = sim.Director()
     builder = sim.ConcreteBuilder()
     director.builder = builder
-    director.build_default_simulation()
     #
     # builder.set_days(100)
-    for p in params:
-        setter = getattr(builder, "set_" + p[0].replace("-", "_"))
-        setter(p[1])
-    #
-    esm_sim = builder.simulation
-    x, m, u, b, r, c = esm_sim.simulate()
+    n_participants = int(params[0][1])
+    params.remove(
+        params[0]
+    )  # remove the number of participants for it is not among the setters
+    for n in range(n_participants):
+        director.build_default_simulation()
+        for p in params:
+            setter = getattr(builder, "set_" + p[0].replace("-", "_"))
+            setter(p[1])
+        esm_sim = builder.simulation
+        x, m, u, b, r, c = esm_sim.simulate()
     return clean_for_chartjs(x, m, u, b, r, c)
 
 
