@@ -4,15 +4,31 @@
 
 {% block script %}
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://unpkg.com/mathjs@11.5.1/lib/browser/math.js"></script>
 <script>
     // global variables
     let MY_CHART;
     // global functions
-    function response_rate(sent, responded, target) {
-        return parseFloat(responded.filter(x => x === target).length / sent.filter(x => x === target).length).toPrecision(3)
+    function get_total_responses(responded, target) {
+        let r_sum = 0;
+        for (let i = 0; i < responded.length; i++) {
+            r_sum += responded[i].filter(x => x === target).length
+        }
+        return r_sum;
     }
-    function retention_rate(responded, timesteps, target) {
-        return parseFloat((responded.lastIndexOf(target) + 1) / timesteps.length).toPrecision(3)
+    function get_response_rate(sent, responded, target) {
+        let rr = []
+        for (let i = 0; i < sent.length; i++) {
+            rr.push(responded[i].filter(x => x === target).length / sent[i].filter(x => x === target).length)
+        }
+        return rr;
+    }
+    function get_retention_rate(responded, timesteps, target) {
+        let rr = []
+        for (let i = 0; i < responded.length; i++) {
+            rr.push((responded[i].lastIndexOf(target) + 1) / timesteps[i].length)
+        }
+        return rr;
     }
     function build_query_string() {
         var query = "";
@@ -37,13 +53,14 @@
                     if (MY_CHART) {
                         MY_CHART.destroy();
                     }
+                    chart_data = data[0]
                     MY_CHART = new Chart(ctx, {
                         data: {
-                            labels: data[0],
+                            labels: chart_data[0],
                             datasets: [{
                                 type: 'line',
                                 label: 'Memory Accessibility',
-                                data: data[1],
+                                data: chart_data[1],
                                 borderWidth: 1,
                                 tension: 0.1,
                                 pointRadius: 0,
@@ -51,7 +68,7 @@
                             }, {
                                 type: 'line',
                                 label: 'Urge',
-                                data: data[2],
+                                data: chart_data[2],
                                 borderWidth: 1,
                                 tension: 0.1,
                                 pointRadius: 0,
@@ -59,7 +76,7 @@
                             }, {
                                 type: 'line',
                                 label: 'Context',
-                                data: data[5],
+                                data: chart_data[5],
                                 borderWidth: 1,
                                 tension: 0.1,
                                 pointRadius: 0,
@@ -67,12 +84,12 @@
                             }, {
                                 type: 'scatter',
                                 label: 'Beep',
-                                data: data[3],
+                                data: chart_data[3],
                                 pointHitRadius: 5
                             }, {
                                 type: 'scatter',
                                 label: 'Respond',
-                                data: data[4],
+                                data: chart_data[4],
                                 borderWidth: 5,
                                 pointHitRadius: 9
                             }]
@@ -81,14 +98,20 @@
                             responsive: true
                         }
                     });
-                    $($('#td-avg-rr')[0]).html(response_rate(data[3], data[4], 0));
-                    $($('#td-avg-rt')[0]).html(retention_rate(data[4], data[0], 0));
+                    stats_data = data[1]
+                    $($('#td-avg-rr')[0]).html(parseFloat(math.mean(get_response_rate(stats_data[3], stats_data[4], 1))).toPrecision(3));
+                    $($('#td-sd-rr')[0]).html(parseFloat(math.std(get_response_rate(stats_data[3], stats_data[4], 1))).toPrecision(3));
+                    $($('#td-avg-rt')[0]).html(parseFloat(math.mean(get_retention_rate(stats_data[4], stats_data[0], 1))).toPrecision(3));
+                    $($('#td-sd-rt')[0]).html(parseFloat(math.std(get_retention_rate(stats_data[4], stats_data[0], 1))).toPrecision(3));
+                    $($('#td-t-r')[0]).html(get_total_responses(stats_data[4], 1));
                     $("#dg-warning").show();
+                    $("#dg-spinner").hide();
                 },
                 error: function (err) {
                     console.log(err);
                 },
                 beforeSend: function () {
+                    $("#dg-spinner").show();
                     $("#dg-warning").hide();
                     $("html, body").animate({ scrollTop: 0 }, "fast");
                 }
@@ -136,6 +159,12 @@
             alt="Simulation plot image" /> -->
         <h3 class="text-secondary">Simulation Result</h3>
         <div class="rounded mx-auto d-block border border-primary-subtle mb-5 bg-body">
+            <div class="d-flex justify-content-center">
+                <div id="dg-spinner" class="spinner-border position-absolute mt-3 text-secondary" role="status"
+                    style="display: none">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
             <canvas id="sim-dg"></canvas>
             <span class="badge text-bg-warning" style="display: none" id="dg-warning">The diagram is of the last
                 virtual
@@ -149,6 +178,7 @@
                     <th scope="col" class="text-secondary">SD Response Rate</th>
                     <th scope="col" class="text-secondary">AVG Retention Rate</th>
                     <th scope="col" class="text-secondary">SD Retention Rate</th>
+                    <th scope="col" class="text-secondary">Total Responses</th>
                 </tr>
             </thead>
             <tbody>
@@ -157,6 +187,7 @@
                     <td id="td-sd-rr"></td>
                     <td id="td-avg-rt"></td>
                     <td id="td-sd-rt"></td>
+                    <td id="td-t-r"></td>
                 </tr>
             </tbody>
         </table>
