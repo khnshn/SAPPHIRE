@@ -83,11 +83,13 @@
                     });
                     $($('#td-avg-rr')[0]).html(response_rate(data[3], data[4], 0));
                     $($('#td-avg-rt')[0]).html(retention_rate(data[4], data[0], 0));
+                    $("#dg-warning").show();
                 },
                 error: function (err) {
                     console.log(err);
                 },
                 beforeSend: function () {
+                    $("#dg-warning").hide();
                     $("html, body").animate({ scrollTop: 0 }, "fast");
                 }
             });
@@ -135,6 +137,9 @@
         <h3 class="text-secondary">Simulation Result</h3>
         <div class="rounded mx-auto d-block border border-primary-subtle mb-5 bg-body">
             <canvas id="sim-dg"></canvas>
+            <span class="badge text-bg-warning" style="display: none" id="dg-warning">The diagram is of only one
+                virtual
+                participant</span>
         </div>
         <h4 class="text-secondary">Statistical Report</h4>
         <table class="table table-bordered">
