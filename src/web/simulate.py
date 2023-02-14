@@ -51,6 +51,12 @@ def simulate_custom_get_data(params):
     params.remove(
         params[0]
     )  # remove the number of participants for it is not among the setters
+    X = []
+    M = []
+    U = []
+    B = []
+    R = []
+    C = []
     for n in range(n_participants):
         director.build_default_simulation()
         for p in params:
@@ -58,7 +64,13 @@ def simulate_custom_get_data(params):
             setter(p[1])
         esm_sim = builder.simulation
         x, m, u, b, r, c = esm_sim.simulate()
-    return clean_for_chartjs(x, m, u, b, r, c)
+        X.append(x)
+        M.append(m)
+        U.append(u)
+        B.append(b)
+        R.append(r)
+        C.append(c)
+    return (clean_for_chartjs(x, m, u, b, r, c), (X, M, U, B, R, C))
 
 
 def get_simulation_params():
