@@ -1,0 +1,24 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: SAPPHIRE
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Alireza
+    family-names: Khanshan
+    email: a.khanshan@tue.nl
+    affiliation: Eindhoven University of Technology
+    orcid: 'https://orcid.org/0000-0002-9112-4695'
+repository-code: 'https://github.com/khnshn/SAPPHIRE'
+abstract: >-
+  SAPPHIRE: SimulAting PrticiPant beHavIoR during
+  Experiments
+keywords:
+  - simulation
+  - human behavior
+license: GPL-3.0
+version: 0.1.0
