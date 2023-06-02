@@ -40,12 +40,27 @@
         }
         return "type=custom&" + query.substring(0, query.length - 1);
     }
+    function prepare_form_data() {
+        var fd = new FormData()
+        var elems = $('[id^=in-]');
+        for (let i = 0; i < elems.length; i++) {
+            if (elems[i].id.includes('file') && elems[i].files.length == 1) { // for now only 1 file is allowed per upload form control
+                fd.append(elems[i].id, elems[i].files[0])
+            }
+        }
+        return fd;
+    }
     //JQuery
     $(document).ready(function () {
         $("#btn-simulate").click(function () {
+            var fd = prepare_form_data();
             $.ajax({
                 type: "POST",
                 url: "/simulate?" + build_query_string(),
+                data: fd,
+                cache: false,
+                contentType: false,
+                processData: false,
                 success: function (data) {
                     console.log(data);
                     // $('#sim-img').attr('src', 'data:image/png;base64,' + data);
