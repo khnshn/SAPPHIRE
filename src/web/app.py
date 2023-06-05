@@ -3,6 +3,8 @@ from flask import render_template
 from flask import request
 from flask import jsonify
 import simulate as sim_web
+import numpy as np
+from io import BytesIO
 
 app = Flask(__name__)
 
@@ -25,6 +27,12 @@ def simulate():
     elif request.args.get("type") == "custom":
         params = [(x, request.args.get(x)) for x in request.args]
         params.remove(params[0])  # to remove type=custom; irrelevant for the simulator
-        print(request.files)
+        upload_data = {}
+        for filename in request.files:
+            contents = BytesIO(request.files[filename].read())
+            data = np.genfromtxt(contents, delimiter=",")
+            upload_data[filename] = data
+            print(upload_data)
+            print(params)
         return jsonify(sim_web.simulate_custom_get_data(params)), 200
     return "Unknown simulation type", 400
