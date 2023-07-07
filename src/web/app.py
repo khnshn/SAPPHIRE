@@ -37,8 +37,11 @@ def simulate():
             elif request.files[file].filename.endswith(".joblib"):
                 contents = BytesIO(request.files[file].read())
                 clf = joblib.load(contents)
+                upload_data[file] = clf
             else:
                 return "Unknown simulation type", 400
-            print(params)
-        return jsonify(sim_web.simulate_custom_get_data(params)), 200
+        print(params)
+        if 0 < len(upload_data) < 4:  # zero or four files need to be uploaded
+            return "Unknown simulation type", 400
+        return jsonify(sim_web.simulate_custom_get_data(params, upload_data)), 200
     return "Unknown simulation type", 400

@@ -41,13 +41,15 @@ def clean_for_chartjs(x, m, u, b, r, c):
     )
 
 
-def simulate_custom_get_data(params):
+def simulate_custom_get_data(params, upload_data):
     director = sim.Director()
     builder = sim.ConcreteBuilder()
     director.builder = builder
     #
     # builder.set_days(100)
     n_participants = int(params[0][1])
+    if "beep_times" in upload_data.keys():
+        n_participants = set(upload_data["beep_times"][:, 0])
     params.remove(
         params[0]
     )  # remove the number of participants for it is not among the setters
@@ -62,6 +64,18 @@ def simulate_custom_get_data(params):
         for p in params:
             setter = getattr(builder, "set_" + p[0].replace("-", "_"))
             setter(p[1])
+        if (
+            0 < len(upload_data) < 4
+        ):  # hard coded for now, referring to the 4 required files
+            raise ValueError(
+                "Incorrect number of files are uploaded: {}".format(
+                    ",".join(upload_data.keys())
+                )
+            )
+        else:
+            for key in upload_data.keys():
+                setter = getattr(builder, "set_" + key.replace("-", "_"))
+                setter(upload_data[key])
         esm_sim = builder.simulation
         x, m, u, b, r, c = esm_sim.simulate()
         X.append(x)
