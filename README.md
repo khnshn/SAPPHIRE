@@ -59,9 +59,12 @@ plt.show()
 ```
 
 An example output plot of the simulaiton in web env:
-<br/>
-<img alt="SAPPHIRE example (web)" height="350" src="https://raw.githubusercontent.com/khnshn/sapphire/main/sapphire_scrshot.png">
-<br/>
+
+<p align="center">
+  <br/>
+  <img alt="SAPPHIRE example (web)" height="650" src="https://raw.githubusercontent.com/khnshn/sapphire/main/sapphire_scrshot.png">
+  <br/>
+</p>
 
 ### Simulation parameters
 
@@ -94,9 +97,11 @@ An example output plot of the simulaiton in web env:
 
 ### Proposed architecture (SAPPHIRE builds the foundation for the Simulation Phase)
 
-<br/>
-<img alt="SAPPHIRE example (web)" height="350" src="https://raw.githubusercontent.com/khnshn/sapphire/main/architecture.png">
-<br/>
+<p align="center">
+  <br/>
+  <img alt="SAPPHIRE architecture" height="650" src="https://raw.githubusercontent.com/khnshn/sapphire/main/architecture.png">
+  <br/>
+</p>
 
 ### Publications
 
