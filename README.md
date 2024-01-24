@@ -58,9 +58,9 @@ fig, plt = utils.plot_sim(x, m, u, b, r, c)
 plt.show()
 ```
 
-An example output plot of the simulaiton:
+An example output plot of the simulaiton in web env:
 <br/>
-<img alt="SAPPHIRE example" height="350" src="https://raw.githubusercontent.com/khnshn/sapphire/main/example.png">
+<img alt="SAPPHIRE example (web)" height="350" src="https://raw.githubusercontent.com/khnshn/sapphire/main/sapphire_scrshot.png">
 <br/>
 
 ### Simulation parameters
@@ -91,6 +91,12 @@ An example output plot of the simulaiton:
 | use_prefedined_times_to_beep      | (bool; optional)     | when True predefined_times is used                                                                                                                                     | True         |
 | override_inter_notification_steps | (int; optional)      | when set to greater than -1 it will override the calculated inter notification time based on the experiment protocol                                                   | -1           |
 | total_beeps                       | (int; optional)      | when set to greater than -1 and when predefined_times exists it will determine the inter notification time so the total_beeps is achieved during the experiment period | -1           |
+
+### Proposed architecture (SAPPHIRE builds the foundation for the Simulation Phase)
+
+<br/>
+<img alt="SAPPHIRE example (web)" height="350" src="https://raw.githubusercontent.com/khnshn/sapphire/main/architecture.png">
+<br/>
 
 ### Publications
 
