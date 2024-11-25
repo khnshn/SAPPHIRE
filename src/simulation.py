@@ -306,7 +306,7 @@ class Simulation:
         Returns:
             boolean: true if in cricle; otherwise, no
         """
-        return math.pow((x - h), 2) + math.pow((y - h), 2) < math.pow(r, 2)
+        return math.pow((x - h), 2) + math.pow((y - k), 2) < math.pow(r, 2)
 
     def random_with_change(self, chance=50) -> int:
         """returns 0 or 1 randomly with chance
