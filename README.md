@@ -2,7 +2,7 @@
   <img alt="SAPPHIRE logo" height="100" src="https://raw.githubusercontent.com/khnshn/sapphire/main/gem.png">
 </p>
 
-# SAPPHIRE: SimulAting PrticiPant beHavIoR during Experiments
+# SAPPHIRE: SimulAting ParticiPant beHavIoR during Experiments
 
 [![SAPPHIRE version](https://img.shields.io/badge/SAPPHIRE-v0.1.0-blue)](#)
 [![license](https://img.shields.io/badge/license-GPL--3.0-green)](#)
